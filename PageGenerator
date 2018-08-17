@@ -1,0 +1,151 @@
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+
+/**
+ * Put a short phrase describing the program here.
+ *
+ * @author Put your name here
+ *
+ */
+public final class PostGenerator {
+
+    /**
+     * Private constructor so this utility class cannot be instantiated.
+     */
+    private PostGenerator() {
+    }
+
+    /**
+     * Put a short phrase describing the static method myMethod here.
+     */
+    public static void createHTMLFile(PrintWriter outputFile, String title,
+            String paragraph, String imageLink, String alt) {
+        /*
+         * Heading tags
+         */
+        outputFile.println("<?php\r\n" + "include_once 'header.php';\r\n"
+                + "?>\r\n" + "<!DOCTYPE html>\r\n" + "\r\n" + "<html>\r\n"
+                + "<style>\r\n" + "body {\r\n" + "    font-family: Verdana;\r\n"
+                + "    margin:0;\r\n" + "    margin-top : 0;\r\n"
+                + "    margin-bottom : 0;\r\n" + "}\r\n" + "hr {\r\n"
+                + "    border: 0;\r\n" + "    height: 1px;\r\n"
+                + "    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));\r\n"
+                + "}\r\n" + "ul {\r\n" + "    list-style-type: none;\r\n"
+                + "    margin: 0;\r\n" + "    padding: 0;\r\n"
+                + "    overflow: hidden;\r\n"
+                + "    background: linear-gradient(to right, rgb(245,245,245) , rgb(51, 173, 255));\r\n"
+                + "    position: fixed;\r\n" + "    width: 100%;\r\n" + "}\r\n"
+                + "\r\n" + "li a {\r\n" + "    display: block;\r\n"
+                + "    color: white;\r\n" + "    text-align: center;\r\n"
+                + "    padding: 20px 16px;\r\n"
+                + "    text-decoration: none;\r\n" + "    float: right;\r\n"
+                + "    font-size: 18px;\r\n" + "}\r\n" + "\r\n"
+                + "li a:hover {\r\n" + "    background-color: white;\r\n"
+                + "    color: black;\r\n" + "}\r\n" + ".yEEsh {\r\n"
+                + "  padding: 10px 16px;\r\n"
+                + "  color: rgb(51, 173, 255);\r\n" + "  float: left;\r\n"
+                + "  font-size: 30px;\r\n" + "  font-weight: bold;\r\n"
+                + "}\r\n" + ".container {\r\n" + "    position: relative;\r\n"
+                + "    text-align: center;\r\n" + "    color:  white;\r\n"
+                + "    font-size: 300px;\r\n" + "    font-weight: 300;\r\n"
+                + "}\r\n" + ".centered {\r\n" + "    position: absolute;\r\n"
+                + "    top: 50%;\r\n" + "    left: 50%;\r\n"
+                + "    transform: translate(-50%, -50%);\r\n" + "  }\r\n"
+                + "  .post{\r\n" + "    margin-left: 10%;\r\n"
+                + "    margin-right: 5%;\r\n" + "    height: 400px;\r\n"
+                + "    width: auto;\r\n" + "\r\n" + "  }\r\n" + "\r\n"
+                + "  .column1 {\r\n" + "      width: 75%;\r\n"
+                + "      padding-top: 100px;\r\n" + "      float: left;\r\n"
+                + "    }\r\n" + "    .column2 {\r\n"
+                + "        float:right;\r\n" + "        width: 25%;\r\n"
+                + "        padding-top: 100px;\r\n" + "      }\r\n"
+                + ".center{\r\n" + "  text-align: center;\r\n"
+                + "  font-size:40px;\r\n" + "  font-weight: lighter;\r\n"
+                + "}\r\n" + "\r\n" + "</style>\r\n" + "<body>\r\n" + "<ul>\r\n"
+                + "  <li class = \"yEEsh\">C9 yEEsh</li>\r\n"
+                + "  <li><a href='login.php'>Login</a></li>\r\n"
+                + "  <li><a href=\"#contact\">Gaming</a></li>\r\n"
+                + "  <li><a href=\"blog.php\">Blog</a></li>\r\n"
+                + "  <li><a href=\"index.php\">Home</a></li>\r\n" + "</ul>\r\n"
+                + "<div class = \"column1\">\r\n" + "  <div class=\"post\">");
+        outputFile.println("<h1>" + title + "</h1>");
+        outputFile.println("<img src =" + "\"" + imageLink + "\"" + "alt ="
+                + "\"" + alt + "\"" + ">");
+        outputFile.println("<p>" + paragraph + "</p>");
+        outputFile.println("    </div>\r\n" + "</div>\r\n"
+                + "<div class = \"column2\">\r\n"
+                + "  <h2>Related Posts</h2>\r\n"
+                + "    <img src = \"stock1.jpg\" alt = \"smexy pic\" style=\"width:400px;height:auto;\">\r\n"
+                + "    <h3><a href = \"Stock.php\">Lake</a></h3>\r\n"
+                + "      <p>That is a good looking picture.</p>\r\n"
+                + "    <img src = \"stock2.jpg\" alt = \"smexy pic2\" style=\"width:400px;height:auto;\">\r\n"
+                + "      <h3><a href = \"Stock.php\">Starry Night</a></h3>\r\n"
+                + "        <p>That is another good looking picture.</p>\r\n"
+                + "</div>\r\n" + "</body>\r\n" + "</html>");
+
+    }
+
+    /**
+     * Main method.
+     *
+     * @param args
+     *            the command line arguments
+     */
+    public static void main(String[] args) {
+
+        BufferedReader inputFromUser = new BufferedReader(
+                new InputStreamReader(System.in));
+        PrintWriter fileOut = null;
+        System.out.println("Output pathway to text file: ");
+        try {
+            fileOut = new PrintWriter(new BufferedWriter(
+                    new FileWriter(inputFromUser.readLine())));
+        } catch (IOException e) {
+            System.err.println("Invalid output file location!");
+        }
+        String title = null;
+        String paragraph = null;
+        String imgLink = null;
+        String alt = null;
+        System.out.println("Enter the title of the post:");
+        try {
+            title = inputFromUser.readLine();
+        } catch (IOException e) {
+            System.err.println("error!");
+        }
+        System.out.println("Enter the body of the post:");
+        try {
+            paragraph = inputFromUser.readLine();
+        } catch (IOException e) {
+            System.err.println("error!");
+        }
+        System.out.println("Enter the image link of the post:");
+        try {
+            imgLink = inputFromUser.readLine();
+        } catch (IOException e) {
+            System.err.println("error!");
+        }
+        System.out.println("Enter the alt description of the picture:");
+        try {
+            alt = inputFromUser.readLine();
+        } catch (IOException e) {
+            System.err.println("error!");
+        }
+        try {
+            createHTMLFile(fileOut, title, paragraph, imgLink, alt);
+        } catch (RuntimeException x) {
+            throw new NullPointerException();
+        }
+        try {
+            fileOut.close();
+            inputFromUser.close();
+        } catch (IOException e) {
+            System.err.print("Error closing input/output stream(s)");
+        }
+    }
+
+}
